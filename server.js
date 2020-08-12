@@ -1,8 +1,10 @@
 const express = require("express");
 const mongooose = require("mongoose");
 const app = express();
-//bodyparser
+const cors = require("cors");
+//midddleware
 app.use(express.json());
+app.use(cors());
 const { MONGO_URI } = require("./config");
 app.get("/", (req, res) => {
   res.send("hello from node");
