@@ -6,5 +6,4 @@ i have learnt how to
 =>post
 =>update a post
 =>delete a post
-
-config.js file has been removed.....
+ 
