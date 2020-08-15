@@ -1,4 +1,4 @@
 module.exports = {
   MONGO_URI:
-    "mongodb+srv://Mubeena:Mubeena232@cluster0.uyohq.gcp.mongodb.net/mubeena?retryWrites=true&w=majority",
+    "mongodb+srv://Mubeena:MubeenA232@cluster0.vfc24.gcp.mongodb.net/Mubeena?retryWrites=true&w=majority",
 };

@@ -1,7 +1,19 @@
 const express = require("express");
 const router = express.Router();
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./uploads/");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+const upload = multer({ storage: storage });
 
 const Posts = require("../../models/post");
+const mongoose = require("mongoose");
 
 //getting all the requests
 router.get("/", async (req, res) => {
@@ -16,6 +28,7 @@ router.get("/", async (req, res) => {
 
 //getting one the requests
 router.get("/:id", async (req, res) => {
+  console.log(req.file);
   try {
     const post = await Posts.findById(req.params.id);
     if (!post) throw Error("no items");
@@ -26,8 +39,14 @@ router.get("/:id", async (req, res) => {
 });
 
 //posting the request
-router.post("/", async (req, res) => {
-  const newPost = new Posts(req.body);
+router.post("/", upload.single("productImage"), async (req, res) => {
+  console.log(req.file);
+  const newPost = new Posts({
+    _id: new mongoose.Types.ObjectId(),
+    name: req.body.name,
+    price: req.body.price,
+    productImage: req.file.path,
+  });
 
   try {
     const post = await newPost.save();
@@ -42,6 +61,7 @@ router.post("/", async (req, res) => {
 //deleting the request
 
 router.delete("/:id", async (req, res) => {
+  console.log(req.file);
   try {
     const post = await Posts.findByIdAndDelete(req.params.id);
     if (!post) throw Error("no items to delete");
@@ -54,6 +74,7 @@ router.delete("/:id", async (req, res) => {
 
 //update
 router.patch("/:id", async (req, res) => {
+  console.log(req.file);
   try {
     const post = await Posts.findByIdAndUpdate(req.params.id, req.body);
     if (!post) throw Error("something happened while updating");
