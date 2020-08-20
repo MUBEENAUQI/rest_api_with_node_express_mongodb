@@ -15,7 +15,10 @@ app.get("/", (req, res) => {
 
 const PORT = 3000 || process.env.PORT;
 
-const postsRoutes = require("./routes/api/posts");
+const FruitOption1Routes = require("./routes/api/filteropts1");
+const FruitOptionRoutes = require("./routes/api/fruitopts");
+const FruitOption2Routes = require("./routes/api/filteropts2");
+
 app.listen(PORT, () => console.log("Server mubeena at  $(PORT)"));
 
 //conect to mongodb
@@ -25,4 +28,7 @@ mongooose
   .catch((err) => console.log(err));
 
 //routes
-app.use("/api/posts", postsRoutes);
+
+app.use("/api/Fruits", FruitOption1Routes);
+app.use("/api/Fruits", FruitOptionRoutes);
+app.use("/api/Fruits", FruitOption2Routes);

@@ -1,22 +1,18 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const multer = require("multer");
-const PostSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  price: {
+const FruitoptSchema = new Schema({
+  heigth: {
     type: Number,
     required: true,
   },
-  date: {
-    type: Date,
-    default: Date.now,
+  width: {
+    type: Number,
+    required: true,
   },
   productImage: {
     type: String,
     required: true,
   },
 });
-module.exports = mongoose.model("POST", PostSchema);
+module.exports = mongoose.model("Fruitopt", FruitoptSchema);
