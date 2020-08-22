@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const multer = require("multer");
-const FruitoptSchema = new Schema({
-  heigth: {
-    type: Number,
+const FoodgrainpaneerSchema = new Schema({
+  name: {
+    type: String,
     required: true,
   },
-  width: {
+  price: {
     type: Number,
     required: true,
   },
@@ -15,4 +15,4 @@ const FruitoptSchema = new Schema({
     required: true,
   },
 });
-module.exports = mongoose.model("Fruitopt", FruitoptSchema);
+module.exports = mongoose.model("Foodgrainspaneer", FoodgrainpaneerSchema);

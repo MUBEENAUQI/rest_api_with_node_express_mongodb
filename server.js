@@ -15,9 +15,12 @@ app.get("/", (req, res) => {
 
 const PORT = 3000 || process.env.PORT;
 
-const FruitOption1Routes = require("./routes/api/filteropts1");
-const FruitOptionRoutes = require("./routes/api/fruitopts");
-const FruitOption2Routes = require("./routes/api/filteropts2");
+const FoodgrainMilkRoutes = require("./routes/api/foodgrains");
+const FoodgrainCurdRoutes = require("./routes/api/foodgrainscurd");
+const FoodgrainPaneerRoutes = require("./routes/api/foodgrainspaneer");
+const BeverageTeaRoutes = require("./routes/api/beveragetea");
+const BeverageCoffeeRoutes = require("./routes/api/beveragecoffee");
+const BeverageHealthRoutes = require("./routes/api/beveragehealth");
 
 app.listen(PORT, () => console.log("Server mubeena at  $(PORT)"));
 
@@ -29,6 +32,9 @@ mongooose
 
 //routes
 
-app.use("/api/Fruits", FruitOption1Routes);
-app.use("/api/Fruits", FruitOptionRoutes);
-app.use("/api/Fruits", FruitOption2Routes);
+app.use("/api/Foodgrains/Milk", FoodgrainMilkRoutes);
+app.use("/api/Foodgrains/Curd", FoodgrainCurdRoutes);
+app.use("/api/Foodgrains/Paneer", FoodgrainPaneerRoutes);
+app.use("/api/Beverage/Tea", BeverageTeaRoutes);
+app.use("/api/Beverage/Coffee", BeverageCoffeeRoutes);
+app.use("/api/Beverage/Health", BeverageHealthRoutes);

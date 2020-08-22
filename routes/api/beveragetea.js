@@ -12,15 +12,15 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-const Fruits = require("../../models/fruitopt");
+const Beveragetea = require("../../models/beveragetea");
 const mongoose = require("mongoose");
 
 //getting all the requests
 router.get("/", async (req, res) => {
   try {
-    const posts = await Fruits.find();
+    const posts = await Beveragetea.find();
     if (!posts) throw Error("no items");
-    res.status(200).json({ options: posts });
+    res.status(200).json(posts);
   } catch (err) {
     res.status(400).json({ msg: err });
   }
@@ -30,7 +30,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   console.log(req.file);
   try {
-    const post = await Fruits.findById(req.params.id);
+    const post = await Beveragetea.findById(req.params.id);
     if (!post) throw Error("no items");
     res.status(200).json(post);
   } catch (err) {
@@ -41,11 +41,11 @@ router.get("/:id", async (req, res) => {
 //posting the request
 router.post("/", upload.single("productImage"), async (req, res) => {
   console.log(req.file);
-  const newPost = new Fruits({
+  const newPost = new Beveragetea({
     _id: new mongoose.Types.ObjectId(),
+    name: req.body.name,
+    price: req.body.price,
 
-    heigth: req.body.heigth,
-    width: req.body.width,
     productImage: req.file.path,
   });
 
@@ -64,7 +64,7 @@ router.post("/", upload.single("productImage"), async (req, res) => {
 router.delete("/:id", async (req, res) => {
   console.log(req.file);
   try {
-    const post = await Fruits.findByIdAndDelete(req.params.id);
+    const post = await Beveragetea.findByIdAndDelete(req.params.id);
     if (!post) throw Error("no items to delete");
 
     res.status(200).json("success, post has been deleted");
@@ -77,7 +77,7 @@ router.delete("/:id", async (req, res) => {
 router.patch("/:id", async (req, res) => {
   console.log(req.file);
   try {
-    const post = await Fruits.findByIdAndUpdate(req.params.id, req.body);
+    const post = await Beveragetea.findByIdAndUpdate(req.params.id, req.body);
     if (!post) throw Error("something happened while updating");
 
     res.status(200).json("post has been updated");
